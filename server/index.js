@@ -11,12 +11,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const UserRouter = require('./user/user.router');
+const MemeRouter = require('./meme/meme.router');
 
 const connectionString = process.env.CONNECTION_STRING || '';
 const port = process.env.PORT || null;
 
 // routers
 app.use('/user', UserRouter);
+app.use('/meme', MemeRouter);
 
 mongoose.connect(connectionString, { useNewUrlParser: true })
 .then(() => {
