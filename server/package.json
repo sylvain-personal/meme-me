@@ -1,0 +1,11 @@
+{
+  "name": "meme-me",
+  "version": "0.0.1",
+  "description": "This is a first phase of a meme application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sylvain Boudreau",
+  "license": "ISC"
+}
