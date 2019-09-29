@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 
 const UserRouter = require('./user/user.router');
 const MemeRouter = require('./meme/meme.router');
+const VoteTrackerRouter = require('./vote-tracker/vote-tracker.router')
 
 const connectionString = process.env.CONNECTION_STRING || '';
 const port = process.env.PORT || null;
@@ -19,8 +20,9 @@ const port = process.env.PORT || null;
 // routers
 app.use('/user', UserRouter);
 app.use('/meme', MemeRouter);
+app.use('/vote-tracker', VoteTrackerRouter);
 
-mongoose.connect(connectionString, { useNewUrlParser: true })
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
     console.log('Connected to database');
     app.listen(port, () => {
