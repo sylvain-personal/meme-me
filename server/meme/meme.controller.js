@@ -26,7 +26,7 @@ const getAllMemes = async (req, res, next) => {
 
 const createMeme = async (req, res, next) => {
     const meme = req.body;
-
+    
     try {
         const createdMeme = await create(meme);
         res.json(createdMeme).sendStatus(200);
