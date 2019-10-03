@@ -1,4 +1,4 @@
-const { findById, findAll, create, update, remove } = require('./meme.service')
+const { findById, findAll, create, update, remove } = require('./meme.service');
 
 const getByMemeId = async (req, res, next) => {
     const id = req.params.id;
@@ -25,7 +25,15 @@ const getAllMemes = async (req, res, next) => {
 }
 
 const createMeme = async (req, res, next) => {
-    const meme = req.body;
+    console.log(req.file);
+
+    const meme = {
+        user_id: req.body.user_id,
+        date_added: Date.now(),
+        filename: req.file.filename,
+        point_count: 0,
+        vote_count: 0
+    }
     
     try {
         const createdMeme = await create(meme);

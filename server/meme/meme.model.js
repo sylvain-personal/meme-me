@@ -2,14 +2,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Meme = new Schema({
-  image_url: {
-    type: String
-  },
   user_id: {
     type: String
   },
-  ranking_points: {
-    type: Number
+  date_added: {
+    type: Date
+  },
+  filename: {
+    type: String
+  },
+  point_count: {
+    type:Number
+  },
+  vote_count: {
+    type:Number
   }
 }, {
   collection: 'memes'
