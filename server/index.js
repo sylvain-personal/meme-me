@@ -19,7 +19,6 @@ const port = process.env.PORT || null;
 // routers
 app.use('/user', UserRouter);
 app.use('/meme', MemeRouter);
-app.use('/vote-tracker', VoteTrackerRouter);
 
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
