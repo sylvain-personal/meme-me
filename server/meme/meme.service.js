@@ -24,9 +24,15 @@ const create = async (meme) => {
     }
 }
 
-const update = async (id, meme) => {
+const update = async (id, points) => {
     try {
-        return await Meme.findByIdAndUpdate(id, meme, { new: true });
+        // increment the points by the received points, vote by 1
+        return await Meme.findByIdAndUpdate(id, { 
+            $inc: {
+                'point_count': points,
+                'vote_count': 1
+            }
+        }, {new: true });
     } catch (e) {
         throw new Error(e);
     }
