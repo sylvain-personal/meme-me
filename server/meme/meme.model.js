@@ -16,6 +16,9 @@ const Meme = new Schema({
   },
   vote_count: {
     type:Number
+  },
+  users_voted: {
+    type: []
   }
 }, {
   collection: 'memes'

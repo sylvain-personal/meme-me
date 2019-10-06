@@ -48,9 +48,10 @@ const createMeme = async (req, res, next) => {
 const updateMeme = async (req, res, next) => {
     const id = req.params.id;
     const points = req.body.points;
+    const user_id = req.body.user_id;
 
     try {
-        const updatedMeme = await update(id, points);
+        const updatedMeme = await update(id, points, user_id);
         res.json({
             message: "Meme successfully updated",
             meme: updatedMeme
