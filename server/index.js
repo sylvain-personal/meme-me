@@ -20,7 +20,7 @@ const port = process.env.PORT || null;
 app.use('/user', UserRouter);
 app.use('/meme', MemeRouter);
 
-mongoose.connect(connectionString, { useNewUrlParser: true })
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
     console.log('Connected to database');
     app.listen(port, () => {

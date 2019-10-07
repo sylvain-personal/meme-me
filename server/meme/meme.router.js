@@ -1,20 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Meme = require('./meme.model');
+const { getByMemeId, getAllMemes, createMeme, updateMeme, removeMeme } = require('./meme.controller')
 
-router.get('/', function(req, res){
-   res.send('GET route on things.');
-});
+const multer = require('multer');
+const upload = multer({ dest: 'meme/uploaded/'})
 
-router.post('/', function(req, res){
-   const meme = new Meme(req.body);
-   meme.save()
-    .then(meme => {
-      res.json('Meme added successfully');
-    })
-    .catch(err => {
-      res.status(400).send("unable to save to database");
-    });
-});
+router.get('/:id', getByMemeId);
+router.get('/', getAllMemes);
+
+router.post('/create', upload.single('image'), createMeme);
+
+router.put('/update/:id', updateMeme);
+
+router.delete('/remove/:id', removeMeme);
 
 module.exports = router;
