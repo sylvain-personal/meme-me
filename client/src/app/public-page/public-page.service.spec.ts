@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MemeService } from './meme.service';
+import { PublicPageService } from './public-page.service';
 
-describe('MemeService', () => {
+describe('PublicPageService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: MemeService = TestBed.get(MemeService);
+    const service: PublicPageService = TestBed.get(PublicPageService);
     expect(service).toBeTruthy();
   });
 });
