@@ -2,6 +2,7 @@ const express = require('Express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -9,6 +10,8 @@ require('dotenv').config();
 app.use(bodyParser.urlencoded({ extended: false }))
 //To parse json data
 app.use(bodyParser.json())
+
+app.use(cors())
 
 const UserRouter = require('./user/user.router');
 const MemeRouter = require('./meme/meme.router');
