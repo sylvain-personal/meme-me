@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { PublicPageService } from './public-page.service'
 
 
@@ -9,12 +8,9 @@ import { PublicPageService } from './public-page.service'
   styleUrls: ['./public-page.component.css']
 })
 export class PublicPageComponent implements OnInit {
-  private uploadForm: FormGroup;
 
   constructor(
-    private publicPageService: PublicPageService,
-    private formBuilder: FormBuilder
-  ) { }
+    private publicPageService: PublicPageService) { }
 
   ngOnInit() {
   }
@@ -25,8 +21,6 @@ export class PublicPageComponent implements OnInit {
       user_id: 'test-id',
       image: file
     }
-
-    this.uploadForm = this.formBuilder.group(requestBody);
 
     const formData = new FormData();
     formData.append('user_id', requestBody.user_id);
