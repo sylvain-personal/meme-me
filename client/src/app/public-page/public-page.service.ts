@@ -15,10 +15,21 @@ export class PublicPageService {
   constructor(
     private http: HttpClient) { }
 
+  getMemes() {
+    return this.http.get(API_URL + 'meme');
+  }
+
   addMeme(formData: any): Observable<any> {
     return this.http.post(API_URL + 'meme/create', formData)
       .pipe(
         catchError(formData)
+      );
+  }
+
+  getMeme(id: any): Observable<Blob> {
+    return this.http.get(API_URL + 'meme/' + id, { responseType: 'blob' })
+      .pipe( 
+        catchError(id)
       );
   }
 }

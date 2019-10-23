@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicPageService } from './public-page.service'
+import { DomSanitizer } from '@angular/platform-browser';
 
+declare function test(object):any;
 
 @Component({
   selector: 'app-public-page',
@@ -9,8 +11,13 @@ import { PublicPageService } from './public-page.service'
 })
 export class PublicPageComponent implements OnInit {
 
+  image: Blob;
+  imageToShow: any;
+
   constructor(
-    private publicPageService: PublicPageService) { }
+    private publicPageService: PublicPageService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit() {
   }
@@ -32,5 +39,33 @@ export class PublicPageComponent implements OnInit {
       console.log('error is ', error)
     });
   }
+
+  onButtonClick($event) {
+    this.publicPageService.getMeme('asdasd').subscribe(response => {
+
+     // this.createImageFromBlob(response);
+
+     var imageUrl =  URL.createObjectURL(response);
+     let objectURL = 'data:image/jpeg;base64,' + imageUrl;
+     this.imageToShow = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+    }, (error) => {
+      console.log('error is ', error)
+    });
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      // var imageUrl = test(reader.result);
+      let objectURL = 'data:image/jpeg;base64,' + reader.result;
+      this.imageToShow = this.sanitizer.bypassSecurityTrustUrl(objectURL);;
+    }, false);
+ 
+    console.log(image);
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+ }
 
 }

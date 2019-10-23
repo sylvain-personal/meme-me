@@ -1,11 +1,28 @@
 const { findById, findAll, create, update, remove } = require('./meme.service');
+const fs  = require('fs');
+const FormData = require('form-data');
 
 const getByMemeId = async (req, res, next) => {
     const id = req.params.id;
 
     try {
-        const meme = await findById(id);
-        res.json(meme).sendStatus(200);
+        var formData = new FormData();
+        let image;
+        // console.log(fs);
+        // image = fs.readFile('meme/uploaded/ed5d71d941f2a114e07da926522cd93c.jpg', (err, data) => {
+        //     console.log(data);
+        //     console.log(err);
+        // });
+
+        // const meme = {
+        //     meme: memeInformation,
+        //     image: image
+        // }
+        // formData.append('meme', memeInformation);
+        formData.append('image', fs.createReadStream('meme/uploaded/ed5d71d941f2a114e07da926522cd93c.jpg'));    
+        // console.log(image);
+        //res.type('blob')
+        res.send(fs.createReadStream('meme/uploaded/ed5d71d941f2a114e07da926522cd93c.png'));
         next();
     } catch (e) {
         console.log(e.message)
